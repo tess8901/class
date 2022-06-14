@@ -1,0 +1,268 @@
+body {
+  background-color: #fff1f1;
+  box-sizing: border-box;
+}
+
+
+.title_bar{
+  max-width: 100%;
+}
+
+
+
+.logo_MyCloset {
+  width: 271px;
+  height: 42px;
+  font-family: Arial;
+  font-size: 44px;
+  font-weight: 900;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #000000;
+  margin-bottom: 20px;
+  margin-left: 45%;
+  padding-left: 30px;
+} 
+
+.top{
+  display:flex  ;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  
+  position: relative;
+}
+.icon{
+  margin-right: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  position: relative;
+  top: 15px;
+}
+
+.logoutBtn{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  position: relative;
+  top: 10px;
+}
+
+.LOGIN_TEXT{
+  background-color: #000000;
+  border-radius: 5px;
+  color: #ffffff;
+  font-family: "Arial Black";
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  height: 25px;
+  width: 50px;
+  margin-right: 5px;
+  padding-top: 3px;
+}
+
+.Logout_TEXT{
+  background-color: #000000;
+  border-radius: 5px;
+  border-width: 0;
+  color: #ffffff;
+  font-family: "Arial Black";
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  height: 30px;
+  width: 50px;
+  
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.string{
+  width: 1px;
+  height: 25px;
+  background-color: #778a50;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.JOIN_TEXT{
+  background-color: #42410f;
+  border-radius: 3px;
+  border: solid 1px #778a50;
+  color: #778a50;
+  font-family: "Arial Black", sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  height: 25px;
+  width: 50px;
+  margin-right: 5px;
+  padding-top: 3px;
+  text-decoration: none;
+}
+
+.option_box {
+  width: 100%;
+  height: 44px;
+  border-radius: 3px;
+  background-color: #000000;
+  display: inline-flex;
+  margin-top: 8px;
+}
+
+.table {
+  background-color: #000000;
+  display: inline-flex;
+  margin-top: 8px;
+}
+
+.Home {
+  padding: 12px 30px;
+  font-size: 18px;
+  font-weight: 900;
+  font-family: "Arial Black", sans-serif;
+  color: #ffffff;
+}
+
+.Home:hover {
+  color: #ffffff;
+  text-decoration:transparent;
+}
+
+.wrap{
+  max-width: 960px;
+  margin:auto 20px auto auto;
+  height: auto;
+  display: flex;
+}
+
+.cart{
+  width: 25px;
+  height: 25px;
+  margin:auto 10px auto auto;
+}
+
+.search{
+  display: flex;
+}
+
+.search-btn{
+  width: 20px;
+  height: 20px;
+
+  background: transparent;
+  outline:none;
+  border-width: 0px;
+  
+  cursor: pointer;
+  
+}
+
+.search-bar{
+  width: 150px;
+  height: 25px;
+  border-radius: 8px;
+  outline:whitesmoke;
+  border-width: 0px;
+  margin:auto auto auto auto;
+  background-color: #ffffff;
+}
+
+.products{
+  display: block;
+  flex-wrap: wrap;
+  justify-content: start;
+  gap: 10px;
+  width: 940px;
+  margin-top: 15px;
+  border-width: 3px;
+  border-color: grey;
+}
+
+/* 商品排版 */
+.pro_block{
+  width: 225px;
+  height: 320px;
+  background-color: rgb(255, 255, 255);    
+  border-radius: 5px;
+  border-style:dotted;
+  border-color: rgb(170, 170, 170);
+  border-width: 2px;
+}
+
+.pro_info{
+  display: inline-block;
+  justify-content: center; 
+  align-items: center; 
+}
+
+.pro_descrip{
+  width: 200px;
+  height: 100px;
+  text-align: center;
+  font-weight: 500;
+  line-height: 2;
+  margin:auto auto auto auto;
+}
+
+.textColor{
+  color: #548057;
+}
+
+a{
+  font-size: 20px;
+  font-family: "Microsoft JhengHei";
+}
+
+.Contact {
+  width: 69px;
+  height: 12px;
+  font-family: Arial;
+  font-size: 16px;
+  font-weight: 900;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2.25;
+  letter-spacing: normal;
+  text-align: left;
+  color: #edf2c5;
+  padding-left: 30px;
+}
+
+.contact_text {
+  margin: 0px;
+  padding: 0px;
+
+  border-radius: 3px;
+  background-color: #778A50;
+
+  padding: 15px 30px;
+  font-family: "Arial Black", sans-serif;
+  font-size: 16px;
+  font-weight: 900;
+  color: #edf2c5;
+}
+
+.text{
+  height: 140px;
+  margin-top: 15px;
+  background-color: #f7fbda;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.seller-card-color{
+  background-color: rgb(FF, FF, FF);
+  color: rgb(FF, FF, FF);
+  
+}
+
+.seller-card-padding{
+  padding: 3rem;
+}
+
