@@ -1,0 +1,159 @@
+-- STORE_ID => 商店編號
+-- STORE_NAME => 商店名稱
+-- SALES => 營業額
+-- STORE_DATE => 開始營業日
+-- FK_GEOGRAPHY_ID => 地區編號
+
+-- 結果 欄位 點兩下 即可改值 
+-- 如果要資料還原 就再重新匯一次資料
+
+--------------------------------------------------------------------------------
+
+-- 查詢所有欄位有什麼
+SELECT * FROM STORE_INFORMATION;
+
+-- 查詢 STORE_NAME 的所有欄位
+SELECT STORE_NAME FROM STORE_INFORMATION;
+
+-- 查詢 STORE_NAME , STORE_ID 的所有欄位
+SELECT STORE_NAME,STORE_ID FROM STORE_INFORMATION;
+
+-- 查詢 STORE_NAME 的 STORE_ID（跟上面的差在 STORE_ID 在前面）
+SELECT STORE_ID,STORE_NAME FROM STORE_INFORMATION;
+
+-- DISTINCT 欄位 重複 去除
+SELECT DISTINCT STORE_NAME FROM STORE_INFORMATION;
+
+-- DISTINCT 如果是雙欄位 只有 前 面那個欄位 重複的 才會 去除 ， 後面 如果 值 不同 就不會
+SELECT DISTINCT STORE_NAME,SALES FROM STORE_INFORMATION;
+
+-- 查詢 STORE_INFORMATION 內 售價 > 1000 的
+SELECT * FROM STORE_INFORMATION WHERE SALES > 1000;
+
+-- 查詢 STORE_INFORMATION 內 售價 >= 700 的
+SELECT * FROM STORE_INFORMATION WHERE SALES >= 700;
+
+--------------------------------------------------------------------------------
+
+SELECT * -- 表格中選出所有
+FROM STORE_INFORMATION --在 Store_Information
+WHERE SALES > 1000 -- Sales 高於 $1,000
+OR (SALES > 275 AND SALES < 500); -- 或是 Sales 大於 $275 及 小於 $500 之間的資料
+
+--------------------------------------------------------------------------------
+
+-- 查詢 STORE_INFORMATION 內所有資料的 商店編號 2,3,5
+SELECT * FROM STORE_INFORMATION
+WHERE STORE_ID = 2
+OR STORE_ID = 3
+OR STORE_ID = 5;
+
+--------------------------------------------------------------------------------
+
+-- 查詢 STORE_INFORMATION 內所有資料的 商店編號 2,3,5 (上面的簡化版)
+-- 只能 IN 1000 筆資料
+SELECT * FROM STORE_INFORMATION
+WHERE STORE_ID IN (2,3,5);
+
+--------------------------------------------------------------------------------
+
+-- 查詢 商店名稱 為 Los Angeles 和 Boston 的資料
+SELECT * FROM STORE_INFORMATION 
+WHERE STORE_NAME IN ('Los Angeles','Boston');
+
+-- 查詢 營業額 250 到 1000 之間
+SELECT * FROM STORE_INFORMATION 
+WHERE SALES BETWEEN 250 AND 1000;
+
+-- 查詢 開始營業日 2018-02-01 到 2018-04-30 之間
+SELECT * FROM STORE_INFORMATION 
+WHERE STORE_DATE BETWEEN '2018-02-01' AND '2018-04-30' ;
+
+--------------------------------------------------------------------------------
+
+-- 查詢 B 開頭 的 商店名稱
+SELECT * FROM STORE_INFORMATION 
+WHERE STORE_NAME LIKE 'B%' ;
+
+-- 查詢 S 結尾 的 商店名稱
+SELECT * FROM STORE_INFORMATION 
+WHERE STORE_NAME LIKE 'S%' ;
+
+-- 查詢 包含 ge 的 商店名稱
+SELECT * FROM STORE_INFORMATION 
+WHERE STORE_NAME LIKE '%ge%' ;
+
+-- 查詢 L 開頭 s 結尾 的 商店名稱
+SELECT * FROM STORE_INFORMATION 
+WHERE STORE_NAME LIKE 'L%s' ;
+
+--------------------------------------------------------------------------------
+
+SELECT * FROM STORE_INFORMATION
+-- 1.找出屬於西區的商店
+WHERE (FK_GEOGRAPHY_ID = 2)
+
+-- 2.「且」營業額大於300(包含300)
+AND (SALES >= 300)
+
+-- AND 跟 OR 不能交換
+-- OR 是一個分水嶺 上半部 是一部份 下半部 就是另一部份 會取兩個 聯及 分成 兩大部分 比較
+-- 先把要找的東西 分別查詢 之後分別插入 OR
+
+-- 3.「且」商店名稱'L'開頭
+AND (STORE_NAME LIKE 'L%')
+
+-- 4.「或」營業日介於2018年3月至4月
+OR (STORE_DATE BETWEEN '2018-03-01' AND '2018-04-30') ; 
+
+--------------------------------- ASC DESC 用法 ---------------------------------
+-- 小到大 (預設)
+SELECT * FROM STORE_INFORMATION
+ORDER BY SALES ASC;
+
+-- 大到小
+SELECT * FROM STORE_INFORMATION
+ORDER BY SALES DESC;
+
+-- 如果沒有想要的，就一直比下去(加逗號)，直到有結果為止
+SELECT * FROM STORE_INFORMATION
+ORDER BY SALES ASC , STORE_DATE ASC,STORE_ID ASC,STORE_NAME DESC;
+------------------------------------- 函數 -------------------------------------
+-- SUM 總和
+-- AVG 平均
+-- COUNT 計數
+-- MAX 最大值
+-- MIN 最小值
+SELECT SUM(SALES) , AVG(SALES) , COUNT(SALES) , MAX(SALES) , MIN(SALES) FROM STORE_INFORMATION;
+--------------------------------------------------------------------------------
+SELECT STORE_ID, STORE_NAME, SALES, SALES / 10, STORE_ID + SALES
+FROM STORE_INFORMATION
+ORDER BY SALES; -- 小到大 排序
+
+--------------------------------------------------------------------------------
+-- 計算有幾個不是NULL
+SELECT COUNT(*) 
+FROM STORE_INFORMATION
+WHERE FK_GEOGRAPHY_ID IS NOT NULL;
+--------------------------------------------------------------------------------
+-- 計算有幾個是NULL
+SELECT COUNT(*) 
+FROM STORE_INFORMATION
+WHERE FK_GEOGRAPHY_ID IS NULL;
+--------------------------------------------------------------------------------
+-- 計算有幾個 不重複 名字
+SELECT COUNT(DISTINCT STORE_NAME)
+FROM STORE_INFORMATION;
+--------------------------------------------------------------------------------
+-- SUM（把多個重複的 STORE_NAME 變成一個）
+-- 選擇 STORE_NAME ，（加總）SALES，（計算）STORE_NAME，（平均）SALES
+SELECT STORE_NAME, SUM(SALES), COUNT(STORE_NAME), AVG(SALES)
+FROM STORE_INFORMATION
+GROUP BY STORE_NAME; -- 多個欄位有包含函數的就需要用到 GROUP BY
+--------------------------------------------------------------------------------
+-- 選擇STORE_NAME , STORE_DATE , 計算 STORE_NAME 重複 的有幾個 , 加總(SALES)的全部
+SELECT STORE_NAME,  STORE_DATE, COUNT(STORE_NAME) , SUM(SALES)
+FROM STORE_INFORMATION
+GROUP BY STORE_NAME, STORE_DATE -- 沒有這行 就無法計算多個函數
+ORDER BY STORE_NAME, STORE_DATE; -- 按照結果 小到大 排序
+--------------------------------------------------------------------------------

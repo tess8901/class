@@ -1,0 +1,32 @@
+FROM => 查詢欄位
+
+DISTINCT => 重複 欄位 刪除
+
+WHERE 你所要查的條件
+
+如果要查多個條件，一開始先用 WHERE 後面用 IN('')
+
+BETWEEN 之間
+
+LIKE => 只要 一 個字 就能搜尋關鍵字
+
+ORDER By => 排序 ASCENDING => (ASC)小往大 ， DESCENDING => (DESC)大往小
+
+AVG => 平均，COUNT => 計數 ， MAX => 最大值 ， MIN => 最小值，SUM 總和
+
+GROUP BY => 多個函數就要用
+
+
+-- 查詢 STORE_INFORMATION 內所有資料的 商店編號 2,3,5 
+SELECT * FROM STORE_INFORMATION
+WHERE STORE_ID IN (2,3,5);
+
+
+-- 查詢 營業額 250 到 1000 之間
+SELECT * FROM STORE_INFORMATION 
+WHERE SALES BETWEEN 250 AND 1000;
+
+-- 查詢 開始營業日 2018-02-01 到 2018-04-30 之間
+SELECT * FROM STORE_INFORMATION 
+WHERE STORE_DATE BETWEEN '2018-02-01' AND '2018-04-30' ;
+
